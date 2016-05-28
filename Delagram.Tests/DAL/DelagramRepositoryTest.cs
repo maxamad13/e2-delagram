@@ -16,6 +16,7 @@ namespace Delagram.Tests.DAL
         DelagramRepository Repo { get; set; }
         Mock<DbSet<Post>> mock_post_table { get; set; }
         IQueryable<Post> post_data { get; set; }
+        List<Post> post_datasource { get; set; }
 
         [TestInitialize]
         public void Initialize()
@@ -24,7 +25,7 @@ namespace Delagram.Tests.DAL
             mock_context = new Mock<DelagramContext>();// { CallBase = true};
             Repo = new DelagramRepository(mock_context.Object); // mock_context.Object gives me an instance of what's in angle brakcets
 
-            List<Post> post_datasource = new List<Post>();
+            post_datasource = new List<Post>();
             post_data = post_datasource.AsQueryable();
         }
 
@@ -36,6 +37,7 @@ namespace Delagram.Tests.DAL
             mock_post_table.As<IQueryable<Post>>().Setup(p => p.Provider).Returns(post_data.Provider);
 
             mock_context.Setup(context => context.Posts).Returns(mock_post_table.Object);
+            mock_post_table.Setup(post => post.Add(It.IsAny<Post>())).Callback((Post post) => post_datasource.Add(post));
         }
 
         [TestMethod]
