@@ -71,7 +71,17 @@ namespace Delagram.Tests.DAL
             ConnectMocksToDatasource();
 
             // Act
+            DateTime created_at = DateTime.Now;
+            ApplicationUser created_by = new ApplicationUser();
+            created_by.Id = "fake-user-id";
+            string caption = "Some Caption";
+            string image_url = "https://myimages.fb.com/someimage.jpg";
+
+            Repo.AddPost(image_url,created_by, caption,created_at);
+
             // Assert
+
+            Assert.AreEqual(1, Repo.GetPostCount());
         }
     }
 }
