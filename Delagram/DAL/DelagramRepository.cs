@@ -26,9 +26,16 @@ namespace Delagram.DAL
             return context.Posts.Count();
         }
 
-        public void AddPost(string image_url, ApplicationUser created_by, string caption, DateTime created_at)
+        public void AddPost(string image_url, ApplicationUser created_by, DateTime created_at, string _caption = null)
         {
-            Post new_post = new Post { ImageUrl = image_url, CreatedBy = created_by, Caption = caption, Time = created_at};
+            Post new_post = new Post { ImageUrl = image_url, CreatedBy = created_by, Caption = _caption, Time = created_at};
+            context.Posts.Add(new_post);
+            context.SaveChanges();
+        }
+
+        public void AddPost(string image_url, ApplicationUser created_by)
+        {
+            Post new_post = new Post { ImageUrl = image_url, CreatedBy = created_by, Time = DateTime.Now };
             context.Posts.Add(new_post);
             context.SaveChanges();
         }

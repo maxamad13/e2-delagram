@@ -77,7 +77,8 @@ namespace Delagram.Tests.DAL
             string caption = "Some Caption";
             string image_url = "https://myimages.fb.com/someimage.jpg";
 
-            Repo.AddPost(image_url,created_by, caption,created_at);
+            Repo.AddPost(image_url, created_by, _caption: caption, created_at: created_at);
+            //Repo.AddPost(image_url, created_by, created_at: created_at, _caption: caption);
 
             // Assert
 
