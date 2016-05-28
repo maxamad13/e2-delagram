@@ -10,9 +10,13 @@ namespace Delagram.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            ViewBag.Title = "Posts";
 
-            return View();
+            List<string> post_names = new List<string>();
+            post_names.Add("post 1");
+            post_names.Add("post 2");
+
+            return View(post_names);
         }
     }
 }
