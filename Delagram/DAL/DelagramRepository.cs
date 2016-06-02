@@ -39,5 +39,10 @@ namespace Delagram.DAL
             context.Posts.Add(new_post);
             context.SaveChanges();
         }
+
+        public List<Post> GetPosts()
+        {
+            return context.Posts.ToList<Post>();
+        }
     }
 }
