@@ -23,6 +23,28 @@ namespace Delagram.Migrations
                 new Post { Caption = "Hello Kitty Again", ImageUrl = "https://placekitten.com/200/150", Time = DateTime.UtcNow }
             );
 
+            context.Filters.AddOrUpdate(
+                filter => filter.Name,
+                new Filter { Name = "aden"},
+                new Filter { Name = "reyes" },
+                new Filter { Name = "perpetua" },
+                new Filter { Name = "inkwell" },
+                new Filter { Name = "toaster" },
+                new Filter { Name = "walden" },
+                new Filter { Name = "hudson" },
+                new Filter { Name = "gingham" },
+                new Filter { Name = "mayfair" },
+                new Filter { Name = "lofi" },
+                new Filter { Name = "xpro2" },
+                new Filter { Name = "_1977" },
+                new Filter { Name = "brooklyn" },
+                new Filter { Name = "nashville" },
+                new Filter { Name = "lark" },
+                new Filter { Name = "moon" },
+                new Filter { Name = "clarendon" },
+                new Filter { Name = "willow" }
+            );
+
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data. E.g.
             //
