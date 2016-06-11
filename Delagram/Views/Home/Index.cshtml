@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<Delagram.Models.Filter>
+<div ng-view></div>
 <div ng-controller="PostController as postController">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
@@ -8,10 +9,42 @@
        <div class="row" ng-repeat="post in postController.posts">
             <div class="col-md-4 col-md-offset-4">
                 <h2>{{post.Caption}}</h2>
-                <h3> 1 + 2 = {{1 + 2}}</h3>
-                <img src="{{post.ImageUrl}}" alt="Place Kitten" />
+                <h3>{{post.Time}}</h3>
+                <img class="moon" src="{{post.ImageUrl}}" alt="Place Kitten" />
                 <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301871">Learn more &raquo;</a></p>
             </div>
         </div>
+
+    <div id="create-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content container">
+                <div class="modal-header"></div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form method="post" action="/api/Post" role="form" class="form-vertical">
+                            <div class="col-md-10 form-group">
+                                <label name="image-label">Image URL:</label>
+                                <input type="text" name="image" />
+                            </div>
+                            <div class="col-md-10 form-group">
+                                <label name="caption-label">Caption:</label>
+                                <input type="text" name="caption" />
+                            </div>
+                            <div class="col-md-10 form-group">
+                                <label name="filter-label">Select a Filter:</label>
+                                <select>
+                                    @foreach (var item in Model)
+                                    {
+                                        <option>@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
 
 </div>
