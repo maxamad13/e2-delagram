@@ -5,16 +5,17 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Delagram.DAL;
 
 namespace Delagram.Controllers
 {
     public class PostController : ApiController
     {
+        DelagramRepository Repo = new DelagramRepository();
+
         public IEnumerable<Post> Get()
         {
-            List<Post> posts = new List<Post>();
-            posts.Add(new Post { ImageUrl = "https://placekitten.com/400/300", Caption="Hey Caption 1"});
-            posts.Add(new Post { ImageUrl = "https://placekitten.com/400/300", Caption = "Hey Caption 2" });
+            List<Post> posts = Repo.GetPosts();
             return posts;
         }
     }
